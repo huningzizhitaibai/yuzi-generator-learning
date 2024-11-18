@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * ACM模板(多数之和)
- * @author huning
+ * @author dog
  */
 
 public class MainTemplate {
@@ -23,7 +23,7 @@ public class MainTemplate {
                     for (int num : arr) {
                         sum+=num;
                     }
-                    System.out.println("求和结果是: "+sum);
+                    System.out.println("lala"+sum);
         scanner.close();
     }
 }
