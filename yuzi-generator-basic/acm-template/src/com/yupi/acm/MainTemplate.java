@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 /**
  * ACM模板(多数之和)
- * @author dog
+ * @author 李
  */
 
 public class MainTemplate {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+                while (scanner.hasNext()) {
                     //读取输入元素个数
                     int n = scanner.nextInt();
 
@@ -23,7 +24,8 @@ public class MainTemplate {
                     for (int num : arr) {
                         sum+=num;
                     }
-                    System.out.println("lala"+sum);
+                    System.out.println("debug"+sum);
+                }
         scanner.close();
     }
 }
