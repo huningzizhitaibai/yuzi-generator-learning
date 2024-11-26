@@ -26,6 +26,12 @@ public class MainGenerator {
             FileUtil.mkdir(outputPath);
         }
 
+        //在增加这段代码时发现，所有get方法好像是编译器自己生成的，我并没有写具体的实现. 好像就是Lombok的作用
+        //复制原始文件
+        String sourceRootPath = meta.getFileConfig().getSourceRootPath();
+        String sourceCopyDestPath = outputPath +File.separator + "./source";
+        FileUtil.copy(sourceRootPath,sourceCopyDestPath,false);
+
         // 读取 resources 目录
         ClassPathResource classPathResource = new ClassPathResource("");
         String inputResourcePath = classPathResource.getAbsolutePath();
@@ -63,6 +69,13 @@ public class MainGenerator {
         outputFilePath = outputPath + File.separator + "pom.xml";
         DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
+        //README.md
+        inputFilePath = inputResourcePath + File.separator + "templates/README.md.ftl";
+        outputFilePath = outputPath + File.separator + "README.md";
+        DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+
+
+
         // 构建 jar 包
         JarGenerator.doGenerate(outputPath);
 
@@ -71,6 +84,18 @@ public class MainGenerator {
         String jarName = String.format("%s-%s-jar-with-dependencies.jar",meta.getName(),meta.getVersion());
         String jarPath = "target/" + jarName;
         ScriptGenerator.doGenerate(shellOutputFilePath,jarPath);
+
+        //生成精简版本（产物包）
+        String distOutputFilePath = outputPath + "-dist";
+        String targetAbsolutePath = distOutputFilePath +File.separator + "target";
+        FileUtil.mkdir(targetAbsolutePath);
+        //这里其实就是生成了两个包，一个详细，一个精简。所以直接把详细包中能够用到的文件复制过来就行了
+        String jarAbsolutePath = outputPath + File.separator +jarPath;
+        //拷贝脚本文件
+        //相当于只要能够执行就行，所以只要脚本和资源，不需要相关信息。
+        FileUtil.copy(shellOutputFilePath, distOutputFilePath,true);
+        //拷贝源模板文件
+        FileUtil.copy(sourceRootPath,distOutputFilePath,true);
     }
 }
 
