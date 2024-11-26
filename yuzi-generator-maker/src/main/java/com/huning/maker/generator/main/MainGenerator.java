@@ -4,6 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.util.StrUtil;
 import com.huning.maker.generator.JarGenerator;
+import com.huning.maker.generator.ScriptGenerator;
 import com.huning.maker.generator.file.DynamicFileGenerator;
 import com.huning.maker.meta.Meta;
 import com.huning.maker.meta.MetaManager;
@@ -64,6 +65,12 @@ public class MainGenerator {
 
         // 构建 jar 包
         JarGenerator.doGenerate(outputPath);
+
+        //封装脚本
+        String shellOutputFilePath = outputPath + File.separator +"generator";
+        String jarName = String.format("%s-%s-jar-with-dependencies.jar",meta.getName(),meta.getVersion());
+        String jarPath = "target/" + jarName;
+        ScriptGenerator.doGenerate(shellOutputFilePath,jarPath);
     }
 }
 

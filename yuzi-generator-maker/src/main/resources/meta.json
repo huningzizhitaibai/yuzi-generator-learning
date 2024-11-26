@@ -6,7 +6,7 @@
   "author": "huning",
   "createTime": "2023-11-22",
   "fileConfig": {
-    "inputRootPath": "/Users/huning/Code/yuzi-generator/yuzi-generator-demo-projects/acm-template-pro",
+    "inputRootPath": "D:/SomeTestProject/Java/yuzi-generator/yuzi-generator-demo-projects/acm-template",
     "outputRootPath": "generated",
     "type": "dir",
     "files": [
