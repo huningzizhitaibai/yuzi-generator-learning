@@ -19,7 +19,7 @@ public class MainGenerator {
         StaticGenerator.copyFilesByHutool(inputPath, outputPath);
 
         //这里的模板用的是据提供的模板后自己开发的模板, 对静态copy中的整体文件进行覆写
-        String inputDynamicFilePath = projectPath+"/src/main/resources/templates/";
+        String inputDynamicFilePath = projectPath+"/src/doGenerate/resources/templates/";
         String outputDynamicFilePath = outputPath+"/acm-template/src/com/huning/acm/";
         DynamicFileGenerator.doGenerate(inputDynamicFilePath, outputDynamicFilePath, model);
     }

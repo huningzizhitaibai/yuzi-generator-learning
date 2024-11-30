@@ -17,7 +17,7 @@ public class FreeMarkerTest {
     public void test() throws IOException , TemplateException {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_32);
 
-        configuration.setDirectoryForTemplateLoading(new File("src/main/resources/templates"));
+        configuration.setDirectoryForTemplateLoading(new File("src/doGenerate/resources/templates"));
 
         configuration.setDefaultEncoding("utf-8");
 
